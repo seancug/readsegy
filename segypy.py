@@ -36,20 +36,20 @@ pref_numeric_module='numarray' # FAST ON LARGE FILES
 if (pref_numeric_module=='Numeric'):
 	# IMPORT SEPCIFIC FUNCTIONS FROM Numeric
 	print('SegyPY : Using Numeric module')
-	from Numeric import transpose
-	from Numeric import resize
-	from Numeric import reshape
-	from Numeric import zeros
-	from Numeric import arange
+#	from Numeric import transpose
+#	from Numeric import resize
+#	from Numeric import reshape
+#	from Numeric import zeros
+#	from Numeric import arange
 	
 else:
 	# IMPORT SEPCIFIC FUNCTIONS FROM numarray
-	print('SegyPY : Using numarray module')
-	from numarray import transpose
-	from numarray import resize
-	from numarray import reshape
-	from numarray import zeros
-	from numarray import arange
+	print('SegyPY : Using numpy module')
+	from numpy import transpose
+	from numpy import resize
+	from numpy import reshape
+	from numpy import zeros
+	from numpy import arange
 
 # SOME GLOBAL PARAMETERS
 version='0.3.1'   # modified by A Squelch
@@ -546,6 +546,7 @@ def readSegy(filename,endian='>'):  # modified by A Squelch
 
 	bps=getBytePerSample(SH)
 
+
 	ntraces = (filesize-3600)/(SH['ns']*bps+240)
 #	ntraces = 100
 
@@ -596,9 +597,9 @@ def readSegyData(data,SH,nd,bps,index,endian='>'):  # added by A Squelch
 		revision=1
 	if (revision==256):  # added by A Squelch
 		revision=1
+#	revision=1
 
 	dsf=SH["DataSampleFormat"]
-
 
 	try:  # block added by A Squelch
 		DataDescr=SH_def["DataSampleFormat"]["descr"][revision][dsf]
@@ -694,8 +695,7 @@ def getSegyHeader(filename,endian='>'):  # modified by A Squelch
 	filesize=len(data)
 	ntraces = (filesize-3600)/(SegyHeader['ns']*bps+240)
 	SegyHeader["ntraces"]=ntraces;
-
-        printverbose('getSegyHeader : succesfully read '+filename,1)
+    	printverbose('getSegyHeader : succesfully read '+filename,1)
 
 	
 	return SegyHeader
@@ -980,9 +980,9 @@ def getBytePerSample(SH):
 		revision=1
 	if (revision==256):  # added by A Squelch
 		revision=1
+#	revision=1
 
 	dsf=SH["DataSampleFormat"]
-	
 	try:  # block added by A Squelch
 		bps=SH_def["DataSampleFormat"]["bps"][revision][dsf]
 	except KeyError:
