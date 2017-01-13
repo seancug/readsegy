@@ -6,7 +6,7 @@ import struct
 
 import segypy
 
-filename='ld0057_file_00095.sgy';
+filename='./data/BSSS_20160609_061044.sgy'
 #filename='mini.sgy'
 #filename='data_IEEE.segy';
 #filename='data_IBM_REV1.segy';
@@ -19,24 +19,26 @@ filename='ld0057_file_00095.sgy';
 segypy.verbose=1;
 
 # Read Segy File
-Data,SH,STH=segypy.readSegy(filename);
-
-
+Data,SH,STH=segypy.readSegy(filename, '<')
+import pylab
+#imshow(Data)
+pylab.figure(1)
+pylab.imshow(Data)
 
 exit
 
+filename_out='testout.segy'
+SH['DataSampleFormat']=5
+SH['SegyFormatRevisionNumber']=100
+segypy.writeSegyStructure(filename_out,Data,SH,STH)
 
-filename_out='testout.segy';
-SH['DataSampleFormat']=5;
-SH['SegyFormatRevisionNumber']=100;
-segypy.writeSegyStructure(filename_out,Data,SH,STH);
-
+exit(0)
 segypy.wiggle(Data,SH,2,.1,.1)
 
-f_ieee='data_IEEE.segy';
-f_ibm='data_IBM_REV1.segy';
-d_ieee,SH,STH=segypy.readSegy(f_ieee);
-d_ibm,SH,STH=segypy.readSegy(f_ibm);
+f_ieee='data_IEEE.segy'
+f_ibm='data_IBM_REV1.segy'
+d_ieee,SH,STH=segypy.readSegy(f_ieee)
+d_ibm,SH,STH=segypy.readSegy(f_ibm)
 
 
 import pylab
