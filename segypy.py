@@ -29,26 +29,11 @@ segy.verbose 		: Amount of verbose information to the screen
 
 
 import struct, sys  # modified by A Squelch
-
-pref_numeric_module = 'numarray'  # FAST ON LARGE FILES
-# pref_numeric_module='Numeric'
-if (pref_numeric_module == 'Numeric'):
-    # IMPORT SEPCIFIC FUNCTIONS FROM Numeric
-    print('SegyPY : Using Numeric module')
-# from Numeric import transpose
-#	from Numeric import resize
-#	from Numeric import reshape
-#	from Numeric import zeros
-#	from Numeric import arange
-
-else:
-    # IMPORT SEPCIFIC FUNCTIONS FROM numarray
-    print('SegyPY : Using numpy module')
-    from numpy import transpose
-    from numpy import resize
-    from numpy import reshape
-    from numpy import zeros
-    from numpy import arange
+from numpy import transpose
+from numpy import resize
+from numpy import reshape
+from numpy import zeros
+from numpy import arange
 
 # SOME GLOBAL PARAMETERS
 version = '0.3.1'  # modified by A Squelch
@@ -60,8 +45,8 @@ verbose = 1;
 
 l_int = struct.calcsize('i')
 l_uint = struct.calcsize('I')
-l_long = struct.calcsize('l')
-l_ulong = struct.calcsize('L')
+l_long = 4 #struct.calcsize('l')
+l_ulong = 4 #struct.calcsize('L')
 l_short = struct.calcsize('h')
 l_ushort = struct.calcsize('H')
 l_char = struct.calcsize('c')

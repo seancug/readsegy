@@ -2,3 +2,8 @@
 *.pyc
 .*
 *.SEG
+*.ico
+coord/
+data/
+*.segy
+*.spec

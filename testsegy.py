@@ -6,7 +6,7 @@ import struct
 
 import segypy
 
-filename='./data/BSSS_20160609_061044.sgy'
+filename='./data/L12S.sgy'
 #filename='mini.sgy'
 #filename='data_IEEE.segy';
 #filename='data_IBM_REV1.segy';
@@ -24,8 +24,9 @@ import pylab
 #imshow(Data)
 pylab.figure(1)
 pylab.imshow(Data)
+pylab.show()
 
-exit
+exit(0)
 
 filename_out='testout.segy'
 SH['DataSampleFormat']=5
